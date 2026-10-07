@@ -1,0 +1,9 @@
+{
+  "id": "slow-query",
+  "version": 1,
+  "target": "Preserve tenant query semantics while improving an inspected SQLite plan.",
+  "variations": [
+    "base",
+    "recent"
+  ]
+}

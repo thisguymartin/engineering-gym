@@ -1,0 +1,41 @@
+{
+  "description": "Synthetic demo captured in a temporary checkout. Not a learner assessment.",
+  "commands": [
+    {
+      "command": "npm run --silent gym -- list",
+      "exit_code": 0,
+      "stdout": "duplicate-delivery v1 [base, rollback] \u2014 Persist one local ledger entry per event despite retries and interleaving.\nslow-query v1 [base, recent] \u2014 Preserve tenant query semantics while improving an inspected SQLite plan.\nunfamiliar-module v1 [base, cancel] \u2014 Predict async worker completion and preserve serial ordering under failure or cancellation.\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run --silent gym -- start duplicate-delivery --mode independent --id demo",
+      "exit_code": 0,
+      "stdout": "Created demo\nRead .gym/demo/workspace/README.md\nEdit .gym/demo/workspace/starter/solution.ts\nnpm run gym -- check demo\nEdit .gym/demo/review.json, then npm run gym -- record demo\nClose the agent and disable generative completion during this attempt. Documentation and debugger are allowed. Independence is self-reported.\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run --silent gym -- check demo",
+      "exit_code": 1,
+      "stdout": "[{\"name\":\"sequential retries and distinct events\",\"passed\":true},{\"name\":\"interleaved duplicate writes once\",\"passed\":false,\"assertion\":true,\"error\":\"AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\\n\\n2 !== 1\\n\"},{\"name\":\"receipt survives reopening database\",\"passed\":true}]\n\n\u2714 Add your regression, or explain an existing acceptance case in notes.md (0.991833ms) # TODO\n\u2139 tests 1\n\u2139 suites 0\n\u2139 pass 0\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 1\n\u2139 duration_ms 72.838416\n\nChecks measure behavior, not understanding.\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run --silent gym -- record demo",
+      "exit_code": 0,
+      "stdout": "{\n  \"review\": {\n    \"result\": \"partial\",\n    \"evidence\": \"Barrier check produced two ledger entries for one event.\",\n    \"unresolved\": \"Which writes must share an atomic boundary?\",\n    \"revisit\": \"2026-10-14\"\n  },\n  \"independentlySolved\": false,\n  \"independence\": \"self-reported\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run --silent gym -- due",
+      "exit_code": 0,
+      "stdout": "planned 2026-10-14 demo (base)\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run --silent gym -- start duplicate-delivery --variation rollback --id later",
+      "exit_code": 0,
+      "stdout": "Created later\nRead .gym/later/workspace/README.md\nEdit .gym/later/workspace/starter/solution.ts\nnpm run gym -- check later\nEdit .gym/later/review.json, then npm run gym -- record later\nClose the agent and disable generative completion during this attempt. Documentation and debugger are allowed. Independence is self-reported.\n",
+      "stderr": ""
+    }
+  ]
+}

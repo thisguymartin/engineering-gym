@@ -1,0 +1,9 @@
+{
+  "id": "duplicate-delivery",
+  "version": 1,
+  "target": "Persist one local ledger entry per event despite retries and interleaving.",
+  "variations": [
+    "base",
+    "rollback"
+  ]
+}

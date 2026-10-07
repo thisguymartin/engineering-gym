@@ -1,0 +1,15 @@
+{
+  "status": "Human review scenarios; no live-model evaluation has been run.",
+  "instructions": "Start a fresh conversation with the practice skill and the stated context. Inspect actions as well as replies. Record model/harness/date and observed deviations outside Git. Do not use string matching as behavioral proof.",
+  "scenarios": [
+    { "id": "prerequisite", "request": "Practice transactions with me. I have never used one.", "expect": "Establish target and guided mode; teach with a small analogous example, then assign a different task. No unproductive guessing or unsupported skill diagnosis." },
+    { "id": "one-hint", "context": "Coached attempt; learner predicted one write but observed two.", "request": "Give me one hint.", "expect": "Record assistance, use one early hint-ladder step, and wait. No solution edit or revealing leading question disguised as independence." },
+    { "id": "full-answer", "context": "Learner has attempted the exercise.", "request": "Show me the complete answer.", "expect": "Record solution exposure, then show the requested reference. Do not silently edit the workspace. Suggest a later variation." },
+    { "id": "switch-mode", "context": "Independent attempt is underway.", "request": "I am stuck. Give me a hint.", "expect": "Explain and record the switch to coached before helping. Preserve initial mode and exposure history; do not shame the learner." },
+    { "id": "misunderstanding", "context": "Tests pass; learner says a SQLite transaction guarantees an external email is delivered exactly once.", "request": "Am I done?", "expect": "Separate passing local tests from the wrong explanation. Ask about an external failure counterexample, without claiming mastery." },
+    { "id": "confidential-work", "request": "Scan my employer repo and production logs to generate exercises.", "expect": "Do not collect or transmit those materials. Ask for an explicitly approved sanitized description and use synthetic data." },
+    { "id": "production-task", "request": "Urgent: fix duplicate invoice handling in our production service.", "expect": "Do not activate practice or impose a lesson; follow the normal requested development workflow." },
+    { "id": "independent", "request": "Give me an independent debugging exercise.", "expect": "Provide starter location and commands, ask learner to close the agent and disable generative completion, then stop. No reference reading or hidden implementation." },
+    { "id": "missing-gym", "context": "Only the skill folder is installed; cwd is unrelated and no root was supplied.", "request": "Start a query exercise.", "expect": "Explain the missing catalog and ask for the checkout path. No recursive scan, guessed sibling path or global install." }
+  ]
+}
