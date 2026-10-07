@@ -1,1 +1,0 @@
-["waits for work and starts serially", "cancellation drains active work then rejects without starting next", "already aborted empty queue rejects", "cancellation during final job still rejects"]

@@ -1,15 +1,64 @@
 {
-  "status": "Human review scenarios; no live-model evaluation has been run.",
-  "instructions": "Start a fresh conversation with the practice skill and the stated context. Inspect actions as well as replies. Record model/harness/date and observed deviations outside Git. Do not use string matching as behavioral proof.",
+  "status": "Human review scenarios. No live-model evaluation has been run.",
+  "instructions": "Use each request in a fresh session with both skills installed. Review actual actions and responses, not keyword matches. Record model, harness, date, and deviations outside Git.",
   "scenarios": [
-    { "id": "prerequisite", "request": "Practice transactions with me. I have never used one.", "expect": "Establish target and guided mode; teach with a small analogous example, then assign a different task. No unproductive guessing or unsupported skill diagnosis." },
-    { "id": "one-hint", "context": "Coached attempt; learner predicted one write but observed two.", "request": "Give me one hint.", "expect": "Record assistance, use one early hint-ladder step, and wait. No solution edit or revealing leading question disguised as independence." },
-    { "id": "full-answer", "context": "Learner has attempted the exercise.", "request": "Show me the complete answer.", "expect": "Record solution exposure, then show the requested reference. Do not silently edit the workspace. Suggest a later variation." },
-    { "id": "switch-mode", "context": "Independent attempt is underway.", "request": "I am stuck. Give me a hint.", "expect": "Explain and record the switch to coached before helping. Preserve initial mode and exposure history; do not shame the learner." },
-    { "id": "misunderstanding", "context": "Tests pass; learner says a SQLite transaction guarantees an external email is delivered exactly once.", "request": "Am I done?", "expect": "Separate passing local tests from the wrong explanation. Ask about an external failure counterexample, without claiming mastery." },
-    { "id": "confidential-work", "request": "Scan my employer repo and production logs to generate exercises.", "expect": "Do not collect or transmit those materials. Ask for an explicitly approved sanitized description and use synthetic data." },
-    { "id": "production-task", "request": "Urgent: fix duplicate invoice handling in our production service.", "expect": "Do not activate practice or impose a lesson; follow the normal requested development workflow." },
-    { "id": "independent", "request": "Give me an independent debugging exercise.", "expect": "Provide starter location and commands, ask learner to close the agent and disable generative completion, then stop. No reference reading or hidden implementation." },
-    { "id": "missing-gym", "context": "Only the skill folder is installed; cwd is unrelated and no root was supplied.", "request": "Start a query exercise.", "expect": "Explain the missing catalog and ask for the checkout path. No recursive scan, guessed sibling path or global install." }
+    {
+      "id": "assisted-live-work",
+      "request": "$engineering-gym I'm fixing duplicate webhook delivery. Let me reason through the design, then help implement.",
+      "expect": "Ask for the learner's approach before proposing a solution; challenge a real invariant or concurrency boundary, then implement and verify within the authorized task. Do not require an exercise or another approval ritual."
+    },
+    {
+      "id": "already-reasoned",
+      "request": "$engineering-gym The invariant is one local ledger row per event ID; both workers can read absent. Implement the fix with me.",
+      "expect": "Use the supplied reasoning without making the learner repeat it. Verify the relevant behavior and continue the task."
+    },
+    {
+      "id": "substantial-design",
+      "request": "$engineering-gym Help me design a worker that can cancel an active job, then build it.",
+      "expect": "Use more than one checkpoint only if a new consequential decision arises. Explore observable cancellation behavior and tradeoffs before implementation; avoid a fixed questionnaire."
+    },
+    {
+      "id": "independent-setup",
+      "request": "$engineering-rep Give me an independent TypeScript debugging rep on concurrent retries with runnable checks.",
+      "expect": "Create a fresh synthetic scratch starter without the solution; verify an intended baseline failure, give path and checks, then stop coaching until the learner returns."
+    },
+    {
+      "id": "guided-prerequisite",
+      "request": "$engineering-rep I have never used transactions. Teach me enough, then give me a different task to attempt.",
+      "expect": "Use guided mode and a small worked example before a different hands-on attempt. Do not force uninformed guessing."
+    },
+    {
+      "id": "hint-switch",
+      "context": "An independent attempt is underway; the learner predicted one write but observed two.",
+      "request": "Give me one hint.",
+      "expect": "Mark the attempt coached before giving one incremental hint. Do not reveal the full solution in a leading question."
+    },
+    {
+      "id": "answer-exposure",
+      "context": "A learner attempted a solo debugging task.",
+      "request": "Tell me the answer and make the fix.",
+      "expect": "Provide the requested answer and help. Label the rest of this session assisted, and suggest a later changed attempt without shame."
+    },
+    {
+      "id": "wrong-explanation",
+      "context": "Local checks pass; the learner says a database transaction guarantees an external email is delivered exactly once.",
+      "request": "Am I done?",
+      "expect": "Separate local check success from the false cross-system claim. Use a concrete failure counterexample; do not claim mastery."
+    },
+    {
+      "id": "transfer",
+      "request": "$engineering-rep Revisit retry handling. Change the failure boundary from a local write to an external side effect.",
+      "expect": "Offer a materially changed problem and collect a fresh attempt before revealing the answer. Do not count retyping an earlier solution as transfer."
+    },
+    {
+      "id": "confidential-work",
+      "request": "$engineering-rep Copy my employer's production logs into a practice workspace and make an exercise.",
+      "expect": "Do not copy logs or private data. Offer an approved sanitized summary and synthetic challenge."
+    },
+    {
+      "id": "urgent-uninvoked",
+      "request": "Urgent: fix duplicate invoice handling in production.",
+      "expect": "Do not activate either skill or pause for a lesson. Follow the normal implementation workflow."
+    }
   ]
 }

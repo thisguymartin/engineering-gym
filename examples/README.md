@@ -1,77 +1,33 @@
-# Pick one small practice session
+# Pick the kind of practice the task needs
 
-| Goal | Example | Start |
-| --- | --- | --- |
-| Maintain | “Can I still reproduce and fix a duplicate-delivery race myself?” | `npm run gym -- start duplicate-delivery --mode independent --goal maintain` |
-| Deepen | “I use indexes but want to justify column order from a real plan.” | `npm run gym -- start slow-query --mode coached --goal deepen` |
-| Expand | “I need to understand cancellation before building a worker.” | `npm run gym -- start unfamiliar-module --variation cancel --mode guided --goal expand` |
+These are synthetic examples. Neither skill scans your day or starts a lesson without an explicit invocation.
 
-For optional coaching, tell your agent:
+## 1. Learn while shipping
 
-> Read `skills/practice/SKILL.md`. Use this checkout as the gym root. Help me
-> deepen my query-plan reasoning with hints, not a finished implementation.
+You: `$engineering-gym I'm changing how our worker handles cancellation. I want to own the design; help implement once we have the behavior clear.`
 
-A work-derived prompt should contain only an approved synthetic description:
+Agent: Inspect the relevant code, then ask what should happen if cancellation arrives after a job is dequeued but before its result is committed. Compare your answer with the current behavior and requirements. If a key prerequisite is new, explain it. Once the decision is clear, implement the requested change and run checks. Later, connect the result to your original prediction.
 
-> Practice this concept: a fictional invoice event can arrive twice, and two
-> deliveries can interleave. The only side effect is a local ledger row.
+This is similar to VibeWise's reason-first flow. AI-written implementation remains **assisted completion**.
 
-Do not paste an employer's code, records, logs, secrets or conversations.
-There is no importer, repository scanner, provider call or job-market scraper.
+## 2. Do the debugging yourself
 
-After a session, edit `.gym/<id>/review.json`:
+You: `$engineering-rep I want an independent rep on duplicate delivery. Give me a small synthetic TypeScript starter and runnable checks.`
 
-```json
-{
-  "result": "partial",
-  "evidence": "My serial retry test passes; the barrier reproduces two writes.",
-  "unresolved": "Which writes must share a transaction?",
-  "revisit": "2026-10-14"
-}
-```
+Agent: Prepare a fresh scratch workspace with synthetic events, an invariant, and a deterministic interleaving check. Verify the starter fails for the intended behavior. Give you the path and check command, then stop. You close the agent, investigate, and change the code yourself. When you return, the agent reviews your test result and explanation. A hint switches the attempt to coached.
 
-Use your actual observations and date, then run `npm run gym -- record <id>`.
-One week is a starting suggestion. `npm run gym -- due` shows both overdue and
-future dates in UTC. Clear a revisit by recording a new review with `null`.
-Try `rollback`, `recent`, or `cancel` later in a fresh workspace; do not copy an old
-solution and call it transfer. Record previous solution exposure if it influences
-the current attempt. Use `assist <id> --mode coached --hint "..." --solution`
-when you see an answer; omit `--solution` for a hint.
+## 3. Read and predict unfamiliar code
 
-Diagrams: [architecture](diagrams/architecture.excalidraw),
-[practice loop](diagrams/workflow.excalidraw), [CI boundaries](diagrams/integrity.excalidraw).
-Each has matching `.mmd` source and a `.png` preview in this directory.
-Open editable files in your local Excalidraw; nothing requires a hosted diagram service.
+You: `$engineering-rep Give me a read-and-predict rep on this async module. No answer until I commit to a prediction.`
 
-Private history commands, from the gym root:
+Agent: Identify one observable execution path, ask you to predict the output or state, then let you run it. Compare the result with your model. A later variation changes cancellation or ordering, not just names.
 
-```sh
-npm run gym -- history
-npm run gym -- export /private/new-file.json
-npm run gym -- delete <attempt-id> --yes
-```
+## 4. Revisit a concept later
 
-Choose an actual private export path; existing files are never overwritten.
-Exports contain records and check output, not workspace code. Deletion removes
-only the selected attempt and its records. Back up malformed data before repairing
-it; the helper never silently discards it. Run checks again after each code edit.
-An independent-solve label requires self-reported independent completion, a
-passing last check, and no recorded assistance; it still does not certify ability.
+You: `$engineering-rep Revisit the retry concept I struggled with. This time change the failure boundary.`
 
-## Terminal demo
+Agent: Use your approved summary or previous conversation context, not an automatic scan of private history. Give a changed problem. Compare your new unaided result with the earlier assisted one without assigning a mastery score.
 
-The [README GIF](demo/walkthrough.gif) shows an independent starter failing its
-intended check, a partial review, and a later variation. It does not reveal a
-solution or claim an independently solved exercise. [Captured command output](demo/session.json)
-is saved alongside the GIF; the animation condenses that output.
+For confidential work, supply an approved sanitized description; portable exercises use synthetic data. No customer records, production logs, secrets, or private transcripts should be copied into a practice workspace.
 
-To regenerate it from current code:
-
-```sh
-uv run --no-project --with pillow==12.3.0 python examples/demo/create.py
-```
-
-This optional authoring tool needs Node/npm, Python, uv and Pillow. It runs the
-commands in a disposable checkout, leaving your `.gym/` untouched. Viewing the GIF
-requires no additional software. Font paths can be supplied through `GYM_DEMO_FONT`
-and `GYM_DEMO_MONO_FONT` if the standard macOS/Linux fonts are unavailable.
+[Animated walkthrough](demo/daily-workflow.gif) · [Editable Excalidraw flow](diagrams/daily-workflow.excalidraw) · [Human-review coaching scenarios](coaching-scenarios.json). The animation is illustrative. No live-model evaluation has been run.

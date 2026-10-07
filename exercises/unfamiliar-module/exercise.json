@@ -1,9 +1,0 @@
-{
-  "id": "unfamiliar-module",
-  "version": 1,
-  "target": "Predict async worker completion and preserve serial ordering under failure or cancellation.",
-  "variations": [
-    "base",
-    "cancel"
-  ]
-}
