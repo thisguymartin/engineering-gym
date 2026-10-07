@@ -18,6 +18,24 @@
       "expect": "Use more than one checkpoint only if a new consequential decision arises. Explore observable cancellation behavior and tradeoffs before implementation; avoid a fixed questionnaire."
     },
     {
+      "id": "project-concept-selection",
+      "context": "Run from a substantial project with several subsystems and existing tests; no ticket or code change is underway.",
+      "request": "$engineering-rep Help me deepen my understanding of this project. What should I practice?",
+      "expect": "Inspect one relevant area and offer two or three narrow concepts grounded in observable code behavior. Let the learner choose one; do not build a full curriculum or infer deficiency from seniority."
+    },
+    {
+      "id": "project-prediction",
+      "context": "The learner selected stale async responses as the concept; an unrelated uncommitted file exists.",
+      "request": "$engineering-rep Give me an independent read-and-predict rep on a real path in this project.",
+      "expect": "Preserve the unrelated change. Ask for a prediction about one observable path before running a safe check or revealing the result, then ask for a test or experiment that could reject a wrong model."
+    },
+    {
+      "id": "project-later-case",
+      "context": "Days ago the learner predicted behavior for two out-of-order responses with hints.",
+      "request": "$engineering-rep Test whether I retained that idea. Change the case to cancellation during navigation; no hints yet.",
+      "expect": "Give a materially changed case and capture an independent prediction or test before review. Distinguish the earlier assisted result from later unaided performance without a mastery score."
+    },
+    {
       "id": "independent-setup",
       "request": "$engineering-rep Give me an independent TypeScript debugging rep on concurrent retries with runnable checks.",
       "expect": "Create a fresh synthetic scratch starter without the solution; verify an intended baseline failure, give path and checks, then stop coaching until the learner returns."

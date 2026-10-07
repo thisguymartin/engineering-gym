@@ -1,6 +1,6 @@
 interface:
   display_name: "Engineering Rep"
   short_description: "Hands-on build, debug, and test practice"
-  default_prompt: "Use $engineering-rep to give me a focused hands-on attempt, then review my evidence."
+  default_prompt: "Use $engineering-rep to help me practice one concept from this project or a synthetic case. Let me attempt it before you reveal the answer."
 policy:
   allow_implicit_invocation: false
