@@ -23,7 +23,7 @@ The first skill uses a real task; AI can write code. The second can use a projec
 
 ![Illustrative use of the two learning skills](examples/demo/daily-workflow.gif)
 
-This is an illustrative conversation, not a live model evaluation. [Still image](examples/demo/daily-workflow.png) · [More use cases](examples/README.md).
+This is an illustrative conversation, not a live model evaluation. [Still image](examples/demo/daily-workflow.png) · [Five use cases](examples/README.md#five-ways-to-use-it).
 
 ## Install and use
 
